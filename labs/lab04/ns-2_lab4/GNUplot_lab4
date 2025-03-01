@@ -1,0 +1,58 @@
+#!/usr/bin/gnuplot -persist
+# задаём текстовую кодировку,
+# тип терминала, тип и размер шрифта
+
+set encoding utf8
+set term pngcairo font "Helvetica,9"
+
+# задаём выходной файл графика
+set out 'window_1.png'
+
+# задаём название графика
+set title "Изменение размера окна TCP на линке 1-го источника при N=20"
+
+# подписи осей графика
+set xlabel "t[s]" font "Helvetica, 10"
+set ylabel "CWND [pkt]" font "Helvetica, 10"
+
+# построение графика, используя значения
+# 1-го и 2-го столбцов файла WindowVsTimeRenoOne
+plot "WindowVsTimeRenoOne" using ($1):($2) with lines title "Размер окна TCP"
+
+# задаём выходной файл графика
+set out 'window_2.png'
+
+# задаём название графика
+set title "Изменение размера окна TCP на всех N источниках  при N=20"
+
+# построение графика, используя значения
+# 1-го и 2-го столбцов файла WindowVsTimeRenoAll
+plot "WindowVsTimeRenoAll" using ($1):($2) with lines title "Размер окна TCP"
+
+# задаём выходной файл графика
+set out 'queue.png'
+
+# задаём название графика
+set title "Изменение размера длины очереди на линке (R1–R2)"
+
+# подписи осей графика
+set xlabel "t[s]" font "Helvetica, 10"
+set ylabel "Queue Length [pkt]" font "Helvetica, 10"
+
+# построение графика, используя значения
+# 1-го и 2-го столбцов файла temp.q
+plot "temp.q" using ($1):($2) with lines title "Текущая длина очереди"
+
+# задаём выходной файл графика
+set out 'av_queue.png'
+
+# задаём название графика
+set title "Изменение размера средней длины очереди на линке (R1–R2)"
+
+# подписи осей графика
+set xlabel "t[s]" font "Helvetica, 10"
+set ylabel "Queue Avg Length [pkt]" font "Helvetica, 10"
+
+# построение графика, используя значения
+# 1-го и 2-го столбцов файла temp.a
+plot "temp.a" using ($1):($2) with lines title "Средняя длина очереди"
