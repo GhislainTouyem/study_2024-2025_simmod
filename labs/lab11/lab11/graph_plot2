@@ -1,0 +1,9 @@
+#!/usr/bin/gnuplot -persist
+# задаём текстовую кодировку,
+# тип терминала, тип и размер шрифта
+set encoding utf8
+set term pngcairo font "Helvetica,9"
+
+# задаём выходной файл графика
+set out 'window_2.png'
+plot [0:][0:1.2] "Queue_Delay_Real.log" using ($4):($1) with lines
